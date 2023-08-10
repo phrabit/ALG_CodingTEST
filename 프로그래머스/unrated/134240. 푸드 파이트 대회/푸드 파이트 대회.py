@@ -1,3 +1,5 @@
+# 나의 코드 - 맞음
+
 def solution(food):
     answer = []
     result = ''
@@ -18,3 +20,17 @@ def solution(food):
     
     if len(result)>=3:
         return result
+    
+##############################################################################
+    
+    
+# <답안 코드> - 깔끔함
+
+def solution(food): # 준비한 음식은 항상 짝수개 , 갯수가 1개라면, 패스한다. 홀수개라면 //2 
+    food_str = ""
+    for i in range(len(food)):
+        cnt = food[i] // 2
+        food_str += str(i)*cnt
+    food_str = food_str+"0"
+
+    return food_str+ food_str[0:-1][::-1]
