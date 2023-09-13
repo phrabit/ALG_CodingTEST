@@ -1,5 +1,8 @@
 def solution(s):
-    li = list(map(int, s.split()))
+    
     answer = ""
-    answer = str(min(li)) + " " + str(max(li))
+    
+    li = sorted(list(map(int, s.split(" "))))
+    answer += (str(li[0]) + " " + str(li[-1]))
+    
     return answer
