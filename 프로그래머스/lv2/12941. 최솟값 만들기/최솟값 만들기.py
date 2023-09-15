@@ -1,9 +1,10 @@
 def solution(A,B):
-    sum = 0
+    answer = 0
 
-    A = sorted(A)
-    B = sorted(B, reverse=True)
+    new_A = sorted(A)
+    new_B = sorted(B, reverse=True)
     
     for i in range(len(A)):
-        sum += (A[i]*B[i])
-    return sum
+        answer += (new_A[i]*new_B[i])
+
+    return answer
