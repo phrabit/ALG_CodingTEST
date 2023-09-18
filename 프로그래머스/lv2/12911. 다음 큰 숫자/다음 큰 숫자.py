@@ -1,10 +1,9 @@
 def solution(n):
-    bin_cnt = bin(n)[2:].count('1')
-    num = n+1
+    answer = 0
+    tmp = n
+
     while True:
-        num_cnt = bin(num)[2:].count('1')
-        if num_cnt==bin_cnt:
-            return num;
-        else:
-            num += 1
+        tmp += 1
         
+        if bin(tmp)[2:].count('1') == bin(n)[2:].count('1') :
+            return tmp
