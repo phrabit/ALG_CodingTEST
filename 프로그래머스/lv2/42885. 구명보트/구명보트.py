@@ -1,32 +1,84 @@
-# Greedy 알고리즘을 어떻게 사용할 것인가가 핵심인 문제. 보트를 가장 적은 횟수로 사람들을 이동시키려면 제일 무거운 사람, 제일 가벼운 사람을 같이 묶어서 처리해야한다는 게 핵심 아이디어다.
+# 1차 풀이 -> 37/100
+# def solution(people, limit):
+#     cnt = 0
+    
+#     sorted_ppl = sorted(people)
+    
+#     for i in range(len(sorted_ppl)-1):
+#         if sorted_ppl[i] + sorted_ppl[i+1] <= limit:
+#             cnt += 1
+#             i += 2
+    
+#     cnt += (len(people) - cnt*2)
+    
+#     print(cnt)       
+    
+#     return cnt
 
-# 1. people 리스트를 덱으로 만든 후 내림차순 정렬
 
-# 2. 무거운 사람(왼쪽)과 가벼운 사람(오른쪽)을 인덱스로 매칭
 
-# 3. 합이 보트 무게보다 가벼우면 둘 빼냄
 
-# 4. 보트 무게보다 무거우면 무거운 사람만 빼냄
+
+
+
+# 2차풀이 37/100 
+# 모든 경우를 다 나누었는데 실패...
+# def solution(people, limit):
+#     cnt = 0
+#     sorted_ppl = sorted(people)
+    
+#     if (sorted_ppl[0] + sorted_ppl[1]) > limit:
+#         cnt = len(people)
+#     elif (sorted_ppl[0] + sorted_ppl[-1]) > limit:
+#         for i in range(len(sorted_ppl)-1):
+#             if sorted_ppl[i] + sorted_ppl[i+1] <= limit:
+#                 cnt += 1
+#                 i += 2
+#         cnt += (len(people) - cnt*2)    
+#     else:
+#         for i in range(len(sorted_ppl)):
+#             if (people[i] + people[-(i+1)]) <= limit:
+#                 cnt += 1
+#             else:
+#                 break      
+#         cnt += (len(people) - 2*cnt)
+    
+#     return cnt
+    
+
+# 3차 시도 : 덱으로 구현해야 한다는 힌트를 얻음.
 
 from collections import deque
 
 def solution(people, limit):
-    people = deque(sorted(people, reverse=True))
-    cnt = 0
+    dq = deque(sorted(people, reverse=True))
+    cnt = 0 
     
-    while len(people)>1:
-        if people[0]+people[-1]<=limit:
+    while len(dq)>1:
+        if dq[0]+dq[-1]<=limit:
             cnt+=1
-            people.popleft()
-            people.pop()
+            dq.popleft()
+            dq.pop()
         else:
             cnt+=1
-            people.popleft()
+            dq.popleft()
     
-    if people:
+    if dq:
         cnt += 1
     
     return cnt
-            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
