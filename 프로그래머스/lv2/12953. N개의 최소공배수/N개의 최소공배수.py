@@ -4,29 +4,29 @@
 def solution(arr):
     lcm = 0
     
+    #1. arr 내림차순 정렬 - 편의를 위해
+    arr = sorted(arr, reverse=True)
+    
+    #2. 최대값 최소값의 최소공배수 반복적으로 구함.
     while True:
         
         if len(arr)==1:
             break;
-        
-        #1. arr 내림차순 정렬 - 편의를 위해
-        arr = sorted(arr, reverse=True)
     
-        #2. 최대값 최소값의 최소공배수 반복적으로 구함.
         min = arr[-1]
         max = arr[0]
-        tmp = 0
-        tmp_li = []
+        tmp = 0 # 최대값과 최솟값 두수의 최소공배수를 담는 임시변수
+        tmp_li = [] #두수의 공약수를 담는 임시리스트
 
         for i in range(2, min+1):        
             if min%i==0 and max%i==0:
                 tmp_li.append(i)
 
-        glm=1 if len(tmp_li) == 0 else tmp_li[-1]
+        glm=1 if len(tmp_li) == 0 else tmp_li[-1] #최대공약수 구하기
 
-        tmp = glm * (max//glm) * (min//glm)
-        arr[0] = tmp
-        arr.pop()
+        tmp = glm * (max//glm) * (min//glm) #최소공배수 구하기
+        arr[0] = tmp #리스트 맨 앞에 최소공배수 넣어주기
+        arr.pop() #최솟값 삭제
     
     return arr[0]
     
