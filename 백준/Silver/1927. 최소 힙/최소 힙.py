@@ -1,16 +1,16 @@
 import sys
-import heapq
+import heapq as hq
 input = sys.stdin.readline
 
-min_heap = []
+heap = []
 
-for _ in range(int(input())):
-    n = int(input())
-    
-    if n == 0:
-        if len(min_heap):
-            print(heapq.heappop(min_heap))
-        else:
+n = int(input())
+for _ in range(n):
+    num = int(input())
+    if num == 0:
+        if len(heap) == 0:
             print(0)
+        else:
+            print(hq.heappop(heap))
     else:
-        heapq.heappush(min_heap, n)
+        hq.heappush(heap, num)
