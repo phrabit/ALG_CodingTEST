@@ -1,21 +1,15 @@
-def DFS(L):
-    if L == m:
-        if res == sorted(res):
-            for i in res:
-                print(i, end=" ")
-            print()
+def DFS(L,S):
+    if L==m:
+        for i in res:
+            print(i, end=" ")
+        print()
     else:
-        for i in range(1, n+1):
-            if check[i] == 0:
-                check[i] = 1
-                res[L] = i
-                DFS(L+1)
-                check[i] = 0
+        for i in range(S, n+1):
+            res[L] = i
+            DFS(L+1, i+1)
+
 
 if __name__ == "__main__":
     n, m = map(int, input().split())
-
-    check = [0]*(n+1)
     res = [0]*m
-
-    DFS(0)
+    DFS(0,1)
