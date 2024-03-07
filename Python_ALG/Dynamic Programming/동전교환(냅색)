@@ -1,0 +1,13 @@
+if __name__=="__main__":
+    n = int(input())
+    money_li = list(map(int, input().split()))
+    target = int(input())
+
+    dp = [1000]*(target+1)
+    dp[0] = 0
+
+    for i in range(n):
+        for j in range(money_li[i], target+1):
+            dp[j] = min(dp[j], dp[j-money_li[i]]+1)
+
+    print(dp[target])
